@@ -1,0 +1,45 @@
+/* Custom cursor — only on devices with a mouse (see cursor.js).
+   A pointer in the spirit of Ubuntu's new cursor: a triangle with a curved bottom.
+   Light pages: dark fill + white outline. Dark pages: white fill + dark outline.
+   Over links, buttons and covers the fill and outline swap. */
+html.ph-cursor-on,
+html.ph-cursor-on * { cursor: none !important; }
+
+.ph-cursor {
+  --ph-fill: #3d3d3d;
+  --ph-stroke: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s;
+  will-change: transform;
+}
+.ph-cursor.is-on { opacity: 1; }
+.ph-cursor.is-hidden { opacity: 0; }
+.ph-cursor.is-link { --ph-fill: #fff; --ph-stroke: #3d3d3d; }
+
+/* dark pages (e.g. «Обо мне») set data-cursor="dark" on <html> */
+html[data-cursor="dark"] .ph-cursor { --ph-fill: #fff; --ph-stroke: #3d3d3d; }
+html[data-cursor="dark"] .ph-cursor.is-link { --ph-fill: #3d3d3d; --ph-stroke: #fff; }
+
+.ph-cursor svg {
+  position: absolute;
+  /* the tip (4, 3 in a 24-unit box) sits exactly on the mouse position */
+  left: -4px;
+  top: -3px;
+  width: 24px;
+  height: 24px;
+  overflow: visible;
+  transform-origin: 4px 3px;
+  transition: transform .15s;
+}
+.ph-cursor.is-down svg { transform: scale(.9); }
+
+.ph-cursor path {
+  fill: var(--ph-fill);
+  stroke: var(--ph-stroke);
+  transition: fill .15s, stroke .15s;
+}
