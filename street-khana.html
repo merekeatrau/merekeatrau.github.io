@@ -4,7 +4,7 @@
         Running on cargo.site
 
 -->
-<html lang="en" data-predefined-style="true" data-css-presets="true" data-css-preset data-typography-preset>
+<html lang="ru" data-predefined-style="true" data-css-presets="true" data-css-preset data-typography-preset>
 	<head>
 <script>
 				var __cargo_context__ = 'live';
@@ -29,9 +29,11 @@
 		<meta name="twitter:description" content="Промо-запуск эксклюзивного сериала Кинопоиска: все форматы от наружки до in-app. Концепты 3D-логотипа сделал через ИИ — они вошли в финальный проект. Для партнёров Six Coffee Wine и Pasta La Vista — спешл-меню.">
 		<meta name="twitter:image" content="https://merekeatrau.github.io/assets/og/street-khana.jpg">
 		<meta property="og:locale" content="ru_RU">
+		<link rel="alternate" hreflang="ru" href="https://merekeatrau.github.io/street-khana">
+		<link rel="alternate" hreflang="en" href="https://merekeatrau.github.io/en/street-khana">
 		<meta property="og:title" content="STREETХАНА, Кинопоиск — Мереке Атрауов">
 		<meta property="og:description" content="Промо-запуск эксклюзивного сериала Кинопоиска: все форматы от наружки до in-app. Концепты 3D-логотипа сделал через ИИ — они вошли в финальный проект. Для партнёров Six Coffee Wine и Pasta La Vista — спешл-меню.">
-		<meta property="og:url" content="https://merekeatrau.github.io/street-khana.html">
+		<meta property="og:url" content="https://merekeatrau.github.io/street-khana">
 		<meta property="og:image" content="https://merekeatrau.github.io/assets/og/street-khana.jpg">
 		<meta property="og:image:width" content="1200">
 		<meta property="og:image:height" content="630">
@@ -74,7 +76,7 @@
 <script type="text/x-handlebars-template" id="page_master">{{#if this.is_set}} {{#each pages}} {{#if this.is_set}} <div data-container="set" data-id="{{id}}"> {{>page_master}} </div> {{else}} {{>page}} {{/if}} {{/each}} {{else}} {{>page}} {{/if}}</script>
 <script type="text/x-handlebars-template" id="page">{{#if pin}} {{!-- Do not render pins in this view --}} {{else}} <div data-container="page" class="page_container" {{#if page_options.local_layout_options.split_responsive}}split-responsive {{else}}{{#if page_options.local_layout_options.split_layout}}split-layout {{/if}}{{/if}}local-style="{{id}}" data-id="{{id}}"> <div class="page container container_width" data-container="content" data-id="{{id}}"> <bodycopy class="bodycopy content content_padding"> <div class="page_content clearfix" data-elementresizer data-resize-parent> {{print "content"}} </div> {{{ page_options.svg_overlay }}} </bodycopy> </div> <div class="page_background"></div> <style class="local-css" data-target="{{id}}"> {{{ page_options.local_css }}} </style> {{#if_all backdrop backdrop_enabled}} <div data-backdrop="{{backdrop.backdrop_path}}" class="backdrop" data-view="Backdrop" data-id="{{id}}"> [script type="text/json" data-set="backdrop_data">{{{stringify backdrop}}}[/script> </div> {{/if_all}} </div> {{/if}}</script>
 <script type="text/x-handlebars-template" id="content">{{#each content}} {{#if pin}}{{!-- Do not render pins in this view --}} {{else}} {{#if this.is_set}} <div data-container="{{#if this.is_set}}set{{else}}page{{/if}}" data-id="{{id}}"> {{>page_master}} </div> {{else}} {{>page_master}} {{/if}} {{/if}} {{/each}}</script>
-<script type="text/x-handlebars-template" id="sitemenu"><div id="site_menu_panel"> <div id="site_menu" class="site_menu"> <div class="page-link home-link {{#if display_options.site_menu_options.show_homepage}} {{else}}hidden{{/if}}"> <a href="index.html" rel="home_page">Homepage</a> <div class="break"></div> </div> {{#each site_menu_tree.pages}} {{>sitemenu_item}} {{/each}} <div class="close">×</div> </div> </div></script>
+<script type="text/x-handlebars-template" id="sitemenu"><div id="site_menu_panel"> <div id="site_menu" class="site_menu"> <div class="page-link home-link {{#if display_options.site_menu_options.show_homepage}} {{else}}hidden{{/if}}"> <a href="./" rel="home_page">Homepage</a> <div class="break"></div> </div> {{#each site_menu_tree.pages}} {{>sitemenu_item}} {{/each}} <div class="close">×</div> </div> </div></script>
 <script type="text/x-handlebars-template" id="sitemenu_item">{{#if is_set}} {{#if in_nav}} <div class="set-link" data-link-pid="{{id}}" data-prevtype="{{previous_type}}"> {{#if_equal set_id 0}} {{#if has_children}} {{#if_equal previous_type "page"}} <div class="break"></div> {{/if_equal}} {{/if}} {{/if_equal}} {{#if in_nav}} <a href="https://brunocafe.co/{{project_url}}" rel="history">{{title}}</a> {{/if}} <div data-set-wrapper {{#if in_nav}}class="indent"{{/if}}> {{/if}} {{#each pages}} {{>sitemenu_item}} {{/each}} {{#if in_nav}} </div> </div> {{/if}} {{else}} {{#if in_nav}} <div class="page-link" data-link-pid="{{id}}" data-prevtype="{{previous_type}}"> <a href="https://brunocafe.co/{{project_url}}" rel="history">{{title}}</a> </div> {{/if}} {{/if}}</script>
 <script type="text/x-handlebars-template" id="pin"><div class="page_container{{#if pin_options.overlay}} overlay{{/if}}{{#if pin_options.accommodate}} accommodate{{/if}}{{#if pin_options.fixed}} fixed{{/if}}{{#if pin_options.exclude_mobile}} exclude_mobile{{/if}}{{#if pin_options.exclude_desktop}} exclude_desktop{{/if}}{{#if_equal pin_options.position 'bottom'}}{{#unless pin_options.fixed}} bottom_pin_invisibility{{/unless}}{{/if_equal}}" {{#if page_options.local_layout_options.split_responsive}}split-responsive {{else}}{{#if page_options.local_layout_options.split_layout}}split-layout {{/if}}{{/if}}local-style="{{id}}"> <div class="page container container_width clearfix" data-container="content" data-id="{{id}}"> <bodycopy class="bodycopy content content_padding"> {{#if_option "title_in_project"}} {{#if show_title}} <div class="project_title" style="display: none"> {{{title}}} </div> {{/if}} {{/if_option}} <div class="page_content clearfix" data-elementresizer data-resize-parent> {{print "content"}} </div> {{{ page_options.svg_overlay }}} </bodycopy> </div> <div class="page_background"></div> <style class="local-css" data-target="{{id}}"> {{{ page_options.local_css }}} </style> {{#if_all backdrop backdrop_enabled}} <div data-backdrop="{{backdrop.backdrop_path}}" class="backdrop" data-view="Backdrop" data-id="{{backdrop.page_id}}">[script type="text/json" data-set="backdrop_data">{{{stringify backdrop}}}[/script></div> {{/if_all}} </div></script>
 <script type="text/x-handlebars-template" id="pinned_top">{{#each pinned}} {{#if pin}} {{#if_equal pin_options.position 'top'}} {{>pin}} {{/if_equal}} {{/if}} {{/each}}</script>
@@ -130,7 +132,7 @@
 	data-view="SiteMenu"
 >
 
-	<a href="index.html" rel="site_menu" id="site_menu_button" class="">
+	<a href="./" rel="site_menu" id="site_menu_button" class="">
 
 			&#xfe0e;
 	</a>
@@ -152,8 +154,8 @@
 			
 			<div class="page_content clearfix" data-elementresizer data-resize-parent>
 				<projectcontent><div class="ph-header">
-	<div class="ph-bio"><h1><a href="index.html#" rel="home_page">Мереке Атрауов</a>, коммуникационный дизайнер<br>из Алматы, работающий <span class="nowrap">в&nbsp;<svg class="ya-logo" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" aria-label="Яндекс"><rect width="260" height="260" rx="130" fill="currentColor"/><path d="M148.321 208.13H175.481V52.1299H135.975C96.246 52.1299 75.3712 72.5558 75.3712 102.633C75.3712 126.651 86.8186 140.792 107.245 155.382L71.7798 208.13H101.184L140.689 149.097L126.997 139.894C110.387 128.671 102.306 119.917 102.306 101.062C102.306 84.4522 113.978 73.2292 136.2 73.2292H148.321V208.13Z" fill="#fff"/></svg>&nbsp;Яндексе.</span></h1></div>
-	<div class="ph-links"><h1><a href="about.html" rel="history">Обо мне</a></h1><div class="ph-links-right"><h1><a href="contacts.html" rel="history">Контакты</a></h1><h1><a href="other.html" rel="history">Остальное</a></h1></div></div>
+	<div class="ph-bio"><h1><a href="./" rel="home_page">Мереке Атрауов</a>, коммуникационный дизайнер<br>из Алматы, работающий <span class="nowrap">в&nbsp;<svg class="ya-logo" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" aria-label="Яндекс"><rect width="260" height="260" rx="130" fill="currentColor"/><path d="M148.321 208.13H175.481V52.1299H135.975C96.246 52.1299 75.3712 72.5558 75.3712 102.633C75.3712 126.651 86.8186 140.792 107.245 155.382L71.7798 208.13H101.184L140.689 149.097L126.997 139.894C110.387 128.671 102.306 119.917 102.306 101.062C102.306 84.4522 113.978 73.2292 136.2 73.2292H148.321V208.13Z" fill="#fff"/></svg>&nbsp;Яндексе.</span></h1></div>
+	<div class="ph-links"><h1><a href="about" rel="history">Обо мне</a></h1><div class="ph-links-right"><h1><a href="contacts" rel="history">Контакты</a></h1><h1><a href="other" rel="history">Остальное</a></h1></div></div>
 </div></projectcontent>
 			</div>
 
@@ -365,7 +367,7 @@
 
 			
 			<div class="page_content clearfix" data-elementresizer data-resize-parent>
-				<projectcontent><div class="ph-footer"><small>Мереке Атрауов – 2026©</small><small>Алматы, KZ</small></div></projectcontent>
+				<projectcontent><div class="ph-footer"><small>Мереке Атрауов – 2026©</small><small class="ph-lang"><a href="en/street-khana" hreflang="en" lang="en">EN</a><span aria-current="true">RU</span></small></div></projectcontent>
 			</div>
 
 			
@@ -678,6 +680,10 @@ text-transform: uppercase;
   .pinned_bottom .page_container { position: relative !important; }
   .ph-footer { display: flex; justify-content: space-between; width: 100vw; margin-left: calc(50% - 50vw);
     padding: 0 1rem; box-sizing: border-box; }
+  /* language switch in the footer: current language black, the other one grey */
+  .ph-lang > * + * { margin-left: 1em; }
+  .ph-lang a { color: rgb(152, 152, 152) !important; border-bottom: 0 !important; text-decoration: none; transition: color 0.2s; }
+  .ph-lang a:hover { color: rgb(0, 0, 0) !important; }
   .nowrap { white-space: nowrap; }
   .ya-logo { display: inline-block; width: 0.8em; height: 0.8em; vertical-align: -0.05em; }
 </style>
@@ -848,5 +854,6 @@ text-transform: uppercase;
   })();
 </script>
 <script src="assets/js/cursor.js"></script>
+<script src="assets/js/links.js"></script>
 </body>
 </html>
