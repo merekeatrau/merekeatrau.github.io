@@ -153,7 +153,7 @@
 			<div class="page_content clearfix" data-elementresizer data-resize-parent>
 				<projectcontent><div class="ph-header">
 	<div class="ph-bio"><h1><a href="index.html#" rel="home_page">Мереке Атрауов</a>, коммуникационный дизайнер<br>из Алматы, работающий <span class="nowrap">в&nbsp;<svg class="ya-logo" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" aria-label="Яндекс"><rect width="260" height="260" rx="130" fill="currentColor"/><path d="M148.321 208.13H175.481V52.1299H135.975C96.246 52.1299 75.3712 72.5558 75.3712 102.633C75.3712 126.651 86.8186 140.792 107.245 155.382L71.7798 208.13H101.184L140.689 149.097L126.997 139.894C110.387 128.671 102.306 119.917 102.306 101.062C102.306 84.4522 113.978 73.2292 136.2 73.2292H148.321V208.13Z" fill="#fff"/></svg>&nbsp;Яндексе.</span></h1></div>
-	<div class="ph-links"><h1><a href="about.html" rel="history">Обо мне</a></h1><div class="ph-links-right"><h1><a href="mailto:mereke.atrauov@gmail.com">mereke.atrauov@gmail.com</a></h1><h1><a href="https://t.me/mereke_atrau" target="_blank">Telegram</a></h1></div></div>
+	<div class="ph-links"><h1><a href="about.html" rel="history">Обо мне</a></h1><div class="ph-links-right"><h1><a href="contacts.html" rel="history">Контакты</a></h1><h1><a href="other.html" rel="history">Остальное</a></h1></div></div>
 </div></projectcontent>
 			</div>
 
@@ -574,6 +574,18 @@ text-transform: uppercase;
   .ph-thumb.below-viewport > div, .ph-thumb.below-viewport > a > div { opacity: 0; transform: translateY(40px); }
   .ph-thumb > a { display: block; border: 0 !important; padding: 0 !important; text-decoration: none; }
   .ph-thumb > a > div { transition: transform 1s ease-in-out, opacity 0.8s ease-in-out; }
+  /* «↗ Посмотреть кейс»: white pill in the lower-left corner — on hover with a mouse, always on touch screens */
+  .ph-thumb > a > div { position: relative; }
+  .ph-cta { position: absolute; left: 0.9rem; bottom: 0.9rem; display: inline-flex; align-items: center; gap: 0.4em;
+    padding: 0.62em 1.05em 0.62em 0.85em; border-radius: 6px; background: #fff; color: #000;
+    font-family: "Suisse Intl", "Helvetica Neue", Helvetica, sans-serif; font-size: 1.4rem; line-height: 1; white-space: nowrap;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12); opacity: 0; transform: translateY(0.4rem);
+    transition: opacity 0.25s ease, transform 0.25s ease; pointer-events: none; }
+  .ph-cta svg { width: 1.05em; height: 1.05em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .ph-thumb > a:hover .ph-cta, .ph-thumb > a:focus-visible .ph-cta { opacity: 1; transform: none; }
+  @media (hover: none) {
+    .ph-cta { opacity: 1; transform: none; }
+  }
   a[href^="mailto:"] { white-space: nowrap; }
   /* header on the thumbnail grid: bio in column 1, links spread evenly across columns 2–3 */
   .ph-header { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -617,10 +629,15 @@ text-transform: uppercase;
     var RATIOS = [[1400,1640,'assets/covers/1.jpg','posmotrite-napravo.html'],[1400,1400,'assets/covers/2.jpg','prod-by.html'],[1400,1170,'assets/covers/3.jpg','kasteyev.html'],
                   [1400,1861,'assets/covers/4.jpg','yandex-karty-novyj-god.html'],[1400,1264,'assets/covers/5.jpg','btsd-values.html'],[1400,788,'assets/covers/6.jpg','street-khana.html'],
                   [1400,788,'assets/covers/7.jpg','nauryz-kinopoisk.html'],[1400,875,'assets/covers/8.jpg','yango-maps.html'],[1400,934,'assets/covers/9.jpg','ymaps-performance.html'],
-                  [1400,875,'assets/covers/10.jpg','bogi-mitapov.html'],[1400,788,'assets/covers/11.jpg'],[1400,1575,'assets/covers/12.jpg','yandex-zapravki.html'],[1400,1757,'assets/covers/13.jpg','uchqun.html'],
+                  [1400,875,'assets/covers/10.jpg','bogi-mitapov.html'],[1400,788,'assets/covers/11.jpg','other.html'],[1400,1575,'assets/covers/12.jpg','yandex-zapravki.html'],[1400,1757,'assets/covers/13.jpg','uchqun.html'],
                   [1400,788,'assets/covers/14.jpg','posters.html'],[1400,1160,'assets/covers/15.jpg','dosmart.html'],[1400,871,'assets/covers/16.jpg','kasip-kenes.html']];
     var root = document.querySelector('.ph-thumbs');
     var built = 0;
+    // Pinterest-like pill on covers that open a case
+    function cta(href) {
+      return '<span class="ph-cta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg>' +
+        (href === 'other.html' ? 'Посмотреть остальное' : 'Посмотреть кейс') + '</span>';
+    }
 
     function build() {
       var count = window.innerWidth <= 768 ? 1 : 3;
@@ -639,6 +656,7 @@ text-transform: uppercase;
         item.className = 'ph-thumb';
         var inner = '<div style="aspect-ratio:' + r[0] + ' / ' + r[1] + '">' +
           (r[2] ? '<img src="' + r[2] + '" width="' + r[0] + '" height="' + r[1] + '" alt="" loading="lazy">' : '') +
+          (r[3] ? cta(r[3]) : '') +
           '</div>';
         item.innerHTML = r[3] ? '<a href="' + r[3] + '">' + inner + '</a>' : inner;
         cols[c].appendChild(item);
