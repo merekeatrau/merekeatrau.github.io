@@ -21,8 +21,11 @@
   function loadImg(img) {
     active++;
     var done = function () { active--; pump(); };
-    img.addEventListener('load', done, { once: true });
-    img.addEventListener('error', done, { once: true });
+    // .is-loaded once the whole file is in, so a fade-in shows it complete, not half-painted
+    // (img.decode() is not used: it can stay pending for pictures that are still transparent)
+    var show = function () { requestAnimationFrame(function () { img.classList.add('is-loaded'); }); };
+    img.addEventListener('load', function () { show(); done(); }, { once: true });
+    img.addEventListener('error', function () { show(); done(); }, { once: true });
     img.src = img.getAttribute('data-src');
     img.removeAttribute('data-src');
   }

@@ -36,6 +36,11 @@
 		<link rel="apple-touch-icon" href="../assets/favicon/favicon-180.png">
 		
 
+		<!-- first covers start downloading right away, before styles and scripts:
+		     the top row on desktop (1–3), the first cover on phones -->
+		<link rel="preload" as="image" href="../assets/covers/1.jpg" fetchpriority="high">
+		<link rel="preload" as="image" href="../assets/covers/2.jpg" fetchpriority="high" media="(min-width: 769px)">
+		<link rel="preload" as="image" href="../assets/covers/3.jpg" fetchpriority="high" media="(min-width: 769px)">
 		<link href="../assets/cargo/stylesheet.css" id="member_stylesheet" rel="stylesheet" type="text/css" />
 <style id="">@font-face{font-family:Icons;src:url(../assets/cargo/static.cargo.site/assets/social/IconFont-Regular-0.9.3.woff2);unicode-range:U+E000-E15C,U+F0000,U+FE0E}@font-face{font-family:Icons;src:url(../assets/cargo/static.cargo.site/assets/social/IconFont-Regular-0.9.3.woff2);font-weight:240;unicode-range:U+E000-E15C,U+F0000,U+FE0E}@font-face{font-family:Icons;src:url(../assets/cargo/static.cargo.site/assets/social/IconFont-Regular-0.9.3.woff2);unicode-range:U+E000-E15C,U+F0000,U+FE0E;font-weight:400}@font-face{font-family:Icons;src:url(../assets/cargo/static.cargo.site/assets/social/IconFont-Regular-0.9.3.woff2);unicode-range:U+E000-E15C,U+F0000,U+FE0E;font-weight:600}@font-face{font-family:Icons;src:url(../assets/cargo/static.cargo.site/assets/social/IconFont-Regular-0.9.3.woff2);unicode-range:U+E000-E15C,U+F0000,U+FE0E;font-weight:800}@font-face{font-family:Icons;src:url(../assets/cargo/static.cargo.site/assets/social/IconFont-Regular-0.9.3.woff2);unicode-range:U+E000-E15C,U+F0000,U+FE0E;font-style:italic}@font-face{font-family:Icons;src:url(../assets/cargo/static.cargo.site/assets/social/IconFont-Regular-0.9.3.woff2);unicode-range:U+E000-E15C,U+F0000,U+FE0E;font-weight:200;font-style:italic}@font-face{font-family:Icons;src:url(../assets/cargo/static.cargo.site/assets/social/IconFont-Regular-0.9.3.woff2);unicode-range:U+E000-E15C,U+F0000,U+FE0E;font-weight:400;font-style:italic}@font-face{font-family:Icons;src:url(../assets/cargo/static.cargo.site/assets/social/IconFont-Regular-0.9.3.woff2);unicode-range:U+E000-E15C,U+F0000,U+FE0E;font-weight:600;font-style:italic}@font-face{font-family:Icons;src:url(../assets/cargo/static.cargo.site/assets/social/IconFont-Regular-0.9.3.woff2);unicode-range:U+E000-E15C,U+F0000,U+FE0E;font-weight:800;font-style:italic}body.iconfont-loading,body.iconfont-loading *{color:transparent!important}body{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:none}body.no-scroll{overflow:hidden}/*!
  * Content
@@ -408,8 +413,20 @@ text-transform: uppercase;
     padding: 0 calc(1rem - 0.3rem); box-sizing: border-box; }
   .ph-col { flex: 1 1 0; min-width: 0; }
   .ph-thumb { padding: 0.3rem; }
-  .ph-thumb > div { background: #000; border-radius: 8px; overflow: hidden; }
   .ph-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  /* loading: a soft grey card with a slow sheen; when the cover arrives it fades in and settles */
+  .ph-thumb > div, .ph-thumb > a > div { border-radius: 8px; overflow: hidden; background-color: #f2f2f2;
+    background-image: linear-gradient(100deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 65%);
+    background-size: 250% 100%; background-repeat: no-repeat; animation: ph-sheen 1.8s ease-in-out infinite; }
+  .ph-thumb > div:has(img.is-loaded), .ph-thumb > a > div:has(img.is-loaded) { animation: none; background-image: none; }
+  @keyframes ph-sheen { from { background-position: 130% 0; } to { background-position: -30% 0; } }
+  .ph-thumb img { opacity: 0; transform: scale(1.04);
+    transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 1.4s cubic-bezier(0.22, 0.61, 0.36, 1); }
+  .ph-thumb img.is-loaded { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .ph-thumb > div, .ph-thumb > a > div { animation: none; background-image: none; }
+    .ph-thumb img { transform: none; transition: opacity 0.3s; }
+  }
   @media (max-width: 768px) {
     .ph-thumbs { padding: 0 calc(1rem - 0.1rem); }
     .ph-thumb { padding: 0.1rem; }
