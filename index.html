@@ -504,13 +504,14 @@ text-transform: uppercase;
         var item = document.createElement('div');
         item.className = 'ph-thumb';
         var inner = '<div style="aspect-ratio:' + r[0] + ' / ' + r[1] + '">' +
-          (r[2] ? '<img src="' + r[2] + '" width="' + r[0] + '" height="' + r[1] + '" alt="" loading="lazy">' : '') +
+          (r[2] ? '<img data-src="' + r[2] + '" width="' + r[0] + '" height="' + r[1] + '" alt="">' : '') +
           (r[3] ? cta(r[3]) : '') +
           '</div>';
         item.innerHTML = r[3] ? '<a href="' + r[3] + '">' + inner + '</a>' : inner;
         cols[c].appendChild(item);
         heights[c] += r[1] / r[0];
       });
+      if (window.phMedia) window.phMedia.scan(root);
     }
 
     /* first cover sits 8.25rem below the header text (header accommodate + empty home page) */
@@ -551,5 +552,6 @@ text-transform: uppercase;
 </script>
 <script src="assets/js/cursor.js"></script>
 <script src="assets/js/links.js"></script>
+<script src="assets/js/media.js"></script>
 </body>
 </html>
